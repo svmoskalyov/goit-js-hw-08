@@ -6,7 +6,7 @@ const STORAGE_KEY = 'feedback-form-state';
 
 loadingPage();
 
-feedbackForm.addEventListener('input', onInput);
+feedbackForm.addEventListener('input', throttle(onInput, 500));
 feedbackForm.addEventListener('submit', onFormSubmit);
 
 function onInput(e) {
