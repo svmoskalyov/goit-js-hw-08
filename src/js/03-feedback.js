@@ -8,13 +8,12 @@ loadingPage();
 feedbackForm.addEventListener('input', onInput);
 feedbackForm.addEventListener('submit', onFormSubmit);
 
-
 function onInput(e) {
-    const { name, value } = e.target;
-    const saveData = load(STORAGE_KEY) ?? {};
+  const { name, value } = e.target;
+  const saveData = load(STORAGE_KEY) ?? {};
 
-    saveData[name] = value;
-    save(STORAGE_KEY, saveData);
+  saveData[name] = value;
+  save(STORAGE_KEY, saveData);
 }
 
 function loadingPage() {
@@ -26,9 +25,24 @@ function loadingPage() {
   }
 }
 
-function onFormSubmit(arguments) {
-  // body
+function onFormSubmit(e) {
+  e.preventDefault();
+  const {
+    elements: { email, message },
+  } = e.currentTarget;
+
+  if (email.value === '' || message.value === '') {
+    return;
+  }
+
+  const userData = {};
+  const formData = new FormData(e.currentTarget);
+
+  formData.forEach((value, name) => {
+    userData[name] = value;
+  });
+
+  console.log(userData);
+  remove(STORAGE_KEY);
+  e.currentTarget.reset();
 }
-
-
-
