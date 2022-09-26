@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 import { load, save, remove } from './storage';
 
 const feedbackForm = document.querySelector('.feedback-form');
