@@ -7,8 +7,12 @@ feedbackForm.addEventListener('input', onInput);
 feedbackForm.addEventListener('submit', onFormSubmit);
 
 
-function onInput(arguments) {
-  // body
+function onInput(e) {
+    const { name, value } = e.target;
+    const saveData = load(STORAGE_KEY) ?? {};
+
+    saveData[name] = value;
+    save(STORAGE_KEY, saveData);
 }
 
 function onFormSubmit(arguments) {
